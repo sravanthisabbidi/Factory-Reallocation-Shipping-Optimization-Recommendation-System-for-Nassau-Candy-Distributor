@@ -14,12 +14,14 @@ st.set_page_config(
 # ── Load data ──────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df         = pd.read_csv("outputs/processed_data.csv")
-    sim        = pd.read_csv("outputs/simulation_results.csv")
-    recs       = pd.read_csv("outputs/recommendations.csv")
-    all_recs   = pd.read_csv("outputs/all_recommendations.csv")
-    fact_prof  = pd.read_csv("outputs/factory_profile.csv")
-    prod_prof  = pd.read_csv("outputs/product_profile.csv")
+    import os
+    base = os.path.dirname(os.path.abspath(__file__))
+    df        = pd.read_csv(os.path.join(base, "outputs", "processed_data.csv"))
+    sim       = pd.read_csv(os.path.join(base, "outputs", "simulation_results.csv"))
+    recs      = pd.read_csv(os.path.join(base, "outputs", "recommendations.csv"))
+    all_recs  = pd.read_csv(os.path.join(base, "outputs", "all_recommendations.csv"))
+    fact_prof = pd.read_csv(os.path.join(base, "outputs", "factory_profile.csv"))
+    prod_prof = pd.read_csv(os.path.join(base, "outputs", "product_profile.csv"))
     return df, sim, recs, all_recs, fact_prof, prod_prof
 
 df, sim, recs, all_recs, fact_prof, prod_prof = load_data()
